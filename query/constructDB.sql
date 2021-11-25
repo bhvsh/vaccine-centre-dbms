@@ -1,9 +1,3 @@
--- creating DB
--- -- Use master;
--- -- DROP DATABASE vaccineDB;
--- -- CREATE DATABASE vaccineDB;
--- -- USE vaccineDB;
-
 -- creating a schema 'vDB_sch'
 CREATE SCHEMA vDB_sch
 GO
