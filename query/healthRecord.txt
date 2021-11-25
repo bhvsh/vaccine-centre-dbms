@@ -1,0 +1,11 @@
+Beneficiary Name
+Age Gender
+SSN
+Unique Health ID
+Beneficiary Ref ID
+
+Vaccine Name
+Name of Dose
+Next Due date
+Vaccinated by
+Vaccination At
