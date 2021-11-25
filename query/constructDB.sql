@@ -1,19 +1,29 @@
+-- creating DB
+-- -- Use master;
+-- -- DROP DATABASE vaccineDB;
+-- -- CREATE DATABASE vaccineDB;
+-- -- USE vaccineDB;
+
+-- creating a schema 'vDB_sch'
+CREATE SCHEMA vDB_sch
+GO
+
 -- 'b' stands for Beneficiary
-CREATE TABLE Beneficiary
+CREATE TABLE vDB_sch.Beneficiary
 (
-	buid INTEGER NOT NULL,
+	buid INTEGER NOT NULL, -- beneficiary id
 	bssn INTEGER NOT NULL,
 	bname TEXT NOT NULL,
 	bgender TEXT,
 	baddress TEXT,
 	bphone TEXT,
-	PRIMARY KEY(buid,ssn)
+	PRIMARY KEY(buid)
 )
 
 -- 'w' stands for Vaccinator (Worker)
-CREATE TABLE Vaccinator
+CREATE TABLE vDB_sch.Vaccinator
 (
-	wid INTEGER NOT NULL,
+	wid INTEGER NOT NULL, -- worker id
 	wssn INTEGER NOT NULL,
 	wname TEXT NOT NULL,
 	wgender TEXT,
@@ -23,54 +33,57 @@ CREATE TABLE Vaccinator
 )
 
 -- 'v' stands for Vaccine
-CREATE TABLE Vaccine
+CREATE TABLE vDB_sch.Vaccine
 (
-	vid INTEGER NOT NULL,
+	vid INTEGER NOT NULL, -- vaccine id
 	vname TEXT NOT NULL,
 	vbrand TEXT NOT NULL,
 	vdetail TEXT,
-	interval_dt INTEGER NOT NULL
+	interval_dt INTEGER NOT NULL,
+	PRIMARY KEY(vid)
 )
 
-CREATE TABLE Rooms
+CREATE TABLE vDB_sch.Rooms
 (
+	rid VARCHAR(3) NOT NULL, -- room id
 	floorid INTEGER NOT NULL,
-	roomid INTEGER NOT NULL
+	roomid INTEGER NOT NULL,
+	PRIMARY KEY(rid)
 )
 
-CREATE TABLE RoomUtils
+CREATE TABLE vDB_sch.RoomUtils
 (
 	sessionid INTEGER NOT NULL,
-	roomid INTEGER NOT NULL,
-	start_dt_time TIMESTAMP, 
-	end_dt_time TIMESTAMP,
-	wid INTEGER NOT NULL,
-	vid INTEGER NOT NULL,
+	rid VARCHAR(3) NOT NULL, -- room id
+	start_dt_time DATETIME, 
+	end_dt_time DATETIME,
+	wid INTEGER NOT NULL, -- worker id
+	vid INTEGER NOT NULL, -- vaccine id
 	PRIMARY KEY(sessionid),
-	FOREIGN KEY(roomid) REFERENCES Rooms(roomid),
-	FOREIGN KEY(wid) REFERENCES Vaccinator(wid),
-	FOREIGN KEY(vid) REFERENCES Vaccine(vid)
+	CONSTRAINT FK_Rooms FOREIGN KEY(rid) REFERENCES vDB_sch.Rooms(rid),
+	FOREIGN KEY(wid) REFERENCES vDB_sch.Vaccinator(wid),
+	FOREIGN KEY(vid) REFERENCES vDB_sch.Vaccine(vid)
 )
 
-CREATE TABLE VaccineRecord
+CREATE TABLE vDB_sch.VaccineRecord
 (
-	buid INTEGER NOT NULL,
-	vid INTEGER NOT NULL,
+	buid INTEGER NOT NULL, -- beneficiary id
+	vid INTEGER NOT NULL, -- vaccine id
 	tookDose1 BIT DEFAULT 0,
-	dateDose1 TIMESTAMP,
+	dateDose1 DATE,
 	nextDue DATE,
 	tookDose2 BIT DEFAULT 0,
-	dateDose2 TIMESTAMP,
-	FOREIGN KEY(buid) REFERENCES Beneficiary(buid)
+	dateDose2 DATE,
+	FOREIGN KEY(buid) REFERENCES vDB_sch.Beneficiary(buid)
 )
 
-CREATE TABLE Appointment
+CREATE TABLE vDB_sch.Appointment
 (
 	appointmentid INTEGER NOT NULL,
-	wid INTEGER,
+	wid INTEGER NOT NULL, -- worker id
 	sessionid INTEGER NOT NULL,
 
-	PRIMARY KEY(appointment#),
-	FOREIGN KEY(wid) REFERENCES Vaccinator(wid),
-	FOREIGN KEY(sessionid) REFERENCES RoomUtils(sessionid)
+	PRIMARY KEY(appointmentid),
+	FOREIGN KEY(wid) REFERENCES vDB_sch.Vaccinator(wid),
+	FOREIGN KEY(sessionid) REFERENCES vDB_sch.RoomUtils(sessionid)
 );
