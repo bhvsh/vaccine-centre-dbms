@@ -1,64 +1,76 @@
-CREATE TABLE People
+-- 'b' stands for Beneficiary
+CREATE TABLE Beneficiary
 (
-	uid INTEGER NOT NULL,
-	ssn INTEGER NOT NULL,
-	name TEXT NOT NULL,
-	gender TEXT,
-	address TEXT,
-	phone TEXT,
-	PRIMARY KEY(uid,ssn)
-);
+	buid INTEGER NOT NULL,
+	bssn INTEGER NOT NULL,
+	bname TEXT NOT NULL,
+	bgender TEXT,
+	baddress TEXT,
+	bphone TEXT,
+	PRIMARY KEY(buid,ssn)
+)
 
+-- 'w' stands for Vaccinator (Worker)
 CREATE TABLE Vaccinator
 (
-	eid INTEGER NOT NULL,
-	ssn INTEGER NOT NULL,
-	name TEXT NOT NULL,
-	gender TEXT,
-	address TEXT,
-	phone TEXT,
-	PRIMARY KEY(employee#)
-);
+	wid INTEGER NOT NULL,
+	wssn INTEGER NOT NULL,
+	wname TEXT NOT NULL,
+	wgender TEXT,
+	waddress TEXT,
+	wphone TEXT,
+	PRIMARY KEY(wid)
+)
 
+-- 'v' stands for Vaccine
 CREATE TABLE Vaccine
 (
-	vcodeid INTEGER,
-	name TEXT,
-	brand TEXT,
-	description TEXT,
-	interval_dt INTEGER
-);
+	vid INTEGER NOT NULL,
+	vname TEXT NOT NULL,
+	vbrand TEXT NOT NULL,
+	vdetail TEXT,
+	interval_dt INTEGER NOT NULL
+)
 
 CREATE TABLE Rooms
 (
 	roomid INTEGER NOT NULL,
 	floorid INTEGER NOT NULL
-);
+)
 
 CREATE TABLE RoomUtils
 (
 	sessionid INTEGER NOT NULL,
-	room# INTEGER NOT NULL,
+	roomid INTEGER NOT NULL,
 	start_dt_time TIMESTAMP, 
 	end_dt_time TIMESTAMP,
-	vcode# INTEGER NOT NULL
-);
+	wid INTEGER NOT NULL,
+	vid INTEGER NOT NULL,
+	PRIMARY KEY(sessionid),
+	FOREIGN KEY(roomid) REFERENCES Rooms(roomid),
+	FOREIGN KEY(wid) REFERENCES Vaccinator(wid),
+	FOREIGN KEY(vid) REFERENCES Vaccine(vid)
+)
 
 CREATE TABLE VaccineRecord
 (
-	uid INTEGER NOT NULL,
+	buid INTEGER NOT NULL,
+	vid INTEGER NOT NULL,
 	tookDose1 BIT DEFAULT 0,
 	dateDose1 TIMESTAMP,
 	nextDue DATE,
 	tookDose2 BIT DEFAULT 0,
 	dateDose2 TIMESTAMP,
-);
+	FOREIGN KEY(buid) REFERENCES Beneficiary(buid)
+)
 
 CREATE TABLE Appointment
 (
-	appointment# INTEGER,
-	employee# INTEGER,
-	session# INTEGER NOT NULL,
-	
-	PRIMARY KEY(appointment#)
+	appointmentid INTEGER NOT NULL,
+	wid INTEGER,
+	sessionid INTEGER NOT NULL,
+
+	PRIMARY KEY(appointment#),
+	FOREIGN KEY(wid) REFERENCES Vaccinator(wid),
+	FOREIGN KEY(sessionid) REFERENCES RoomUtils(sessionid)
 );
