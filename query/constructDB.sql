@@ -34,8 +34,8 @@ CREATE TABLE Vaccine
 
 CREATE TABLE Rooms
 (
-	roomid INTEGER NOT NULL,
-	floorid INTEGER NOT NULL
+	floorid INTEGER NOT NULL,
+	roomid INTEGER NOT NULL
 )
 
 CREATE TABLE RoomUtils
