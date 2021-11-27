@@ -13,7 +13,7 @@ VALUES
 ('A10',1,110);
 
 -- For floor 2
-INSERT INTO Rooms(rid,floorid,roomid)
+INSERT INTO vDB_sch.Rooms(rid,floorid,roomid)
 VALUES
 ('B01',2,201),
 ('B02',2,202),
@@ -26,4 +26,4 @@ VALUES
 ('B09',2,209),
 ('B10',2,210);
 
-SELECT * FROM Rooms;
+SELECT * FROM vDB_sch.Rooms;

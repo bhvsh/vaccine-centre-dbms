@@ -45,7 +45,7 @@ CREATE TABLE vDB_sch.Rooms
 	PRIMARY KEY(rid)
 )
 
-CREATE TABLE vDB_sch.RoomUtils
+CREATE TABLE vDB_sch.Schedule
 (
 	sessionid INTEGER NOT NULL,
 	rid VARCHAR(3) NOT NULL, -- room id
@@ -54,12 +54,12 @@ CREATE TABLE vDB_sch.RoomUtils
 	wid INTEGER NOT NULL, -- worker id
 	vid INTEGER NOT NULL, -- vaccine id
 	PRIMARY KEY(sessionid),
-	CONSTRAINT FK_Rooms FOREIGN KEY(rid) REFERENCES vDB_sch.Rooms(rid),
-	FOREIGN KEY(wid) REFERENCES vDB_sch.Vaccinator(wid),
-	FOREIGN KEY(vid) REFERENCES vDB_sch.Vaccine(vid)
+	CONSTRAINT FK_RoomsSchedule FOREIGN KEY(rid) REFERENCES vDB_sch.Rooms(rid),
+	CONSTRAINT FK_VaccinatorSchedule FOREIGN KEY(wid) REFERENCES vDB_sch.Vaccinator(wid),
+	CONSTRAINT FK_VaccineSchedule FOREIGN KEY(vid) REFERENCES vDB_sch.Vaccine(vid)
 )
 
-CREATE TABLE vDB_sch.VaccineRecord
+CREATE TABLE vDB_sch.Vrecord
 (
 	buid INTEGER NOT NULL, -- beneficiary id
 	vid INTEGER NOT NULL, -- vaccine id
@@ -68,7 +68,7 @@ CREATE TABLE vDB_sch.VaccineRecord
 	nextDue DATE,
 	tookDose2 BIT DEFAULT 0,
 	dateDose2 DATE,
-	FOREIGN KEY(buid) REFERENCES vDB_sch.Beneficiary(buid)
+	CONSTRAINT FK_BeneficiaryVrecord FOREIGN KEY(buid) REFERENCES vDB_sch.Beneficiary(buid)
 )
 
 CREATE TABLE vDB_sch.Appointment
@@ -78,6 +78,6 @@ CREATE TABLE vDB_sch.Appointment
 	sessionid INTEGER NOT NULL,
 
 	PRIMARY KEY(appointmentid),
-	FOREIGN KEY(wid) REFERENCES vDB_sch.Vaccinator(wid),
-	FOREIGN KEY(sessionid) REFERENCES vDB_sch.RoomUtils(sessionid)
+	CONSTRAINT FK_VaccinatorAppointment FOREIGN KEY(wid) REFERENCES vDB_sch.Vaccinator(wid),
+	CONSTRAINT FK_RoomUtilsAppointment FOREIGN KEY(sessionid) REFERENCES vDB_sch.Schedule(sessionid)
 );
