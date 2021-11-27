@@ -79,5 +79,5 @@ CREATE TABLE vDB_sch.Appointment
 
 	PRIMARY KEY(appointmentid),
 	CONSTRAINT FK_VaccinatorAppointment FOREIGN KEY(wid) REFERENCES vDB_sch.Vaccinator(wid),
-	CONSTRAINT FK_RoomUtilsAppointment FOREIGN KEY(sessionid) REFERENCES vDB_sch.Schedule(sessionid)
+	CONSTRAINT FK_ScheduleAppointment FOREIGN KEY(sessionid) REFERENCES vDB_sch.Schedule(sessionid)
 );
