@@ -1,5 +1,5 @@
 # vaccine-centre-db
-Mini-Project on COVID-19 Vaccination Centre Database Management System
+COVID-19 Vaccination Centre Database Management System
 
 This Project aims to illustrate the basic concepts of SQL and can be utilized in either
 day-to-day or in exigency situations. The following project is a Database
