@@ -74,10 +74,10 @@ CREATE TABLE vDB_sch.Vrecord
 CREATE TABLE vDB_sch.Appointment
 (
 	appointmentid INTEGER NOT NULL,
-	wid INTEGER NOT NULL, -- worker id
+	buid INTEGER NOT NULL, -- beneficiary id
 	sessionid INTEGER NOT NULL,
 
 	PRIMARY KEY(appointmentid),
-	CONSTRAINT FK_VaccinatorAppointment FOREIGN KEY(wid) REFERENCES vDB_sch.Vaccinator(wid),
+	CONSTRAINT FK_BeneficiaryAppointment FOREIGN KEY(buid) REFERENCES vDB_sch.Beneficiary(buid),
 	CONSTRAINT FK_ScheduleAppointment FOREIGN KEY(sessionid) REFERENCES vDB_sch.Schedule(sessionid)
 );
