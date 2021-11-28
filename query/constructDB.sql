@@ -5,7 +5,7 @@ GO
 -- 'b' stands for Beneficiary
 CREATE TABLE vDB_sch.Beneficiary
 (
-	buid INTEGER NOT NULL, -- beneficiary id
+	buid INTEGER NOT NULL IDENTITY(101, 1), -- beneficiary id + auto-increment from 101
 	bssn INTEGER NOT NULL,
 	bname TEXT NOT NULL,
 	bgender TEXT,
@@ -17,7 +17,7 @@ CREATE TABLE vDB_sch.Beneficiary
 -- 'w' stands for Vaccinator (Worker)
 CREATE TABLE vDB_sch.Vaccinator
 (
-	wid INTEGER NOT NULL, -- worker id
+	wid INTEGER NOT NULL IDENTITY(201, 1), -- worker id + auto-increment from 201
 	wssn INTEGER NOT NULL,
 	wname TEXT NOT NULL,
 	wgender TEXT,
@@ -47,7 +47,7 @@ CREATE TABLE vDB_sch.Rooms
 
 CREATE TABLE vDB_sch.Schedule
 (
-	sessionid INTEGER NOT NULL,
+	sessionid INTEGER NOT NULL IDENTITY(301, 1), -- session id + auto-increment from 301
 	rid VARCHAR(3) NOT NULL, -- room id
 	start_dt_time DATETIME, 
 	end_dt_time DATETIME,
@@ -73,7 +73,7 @@ CREATE TABLE vDB_sch.Vrecord
 
 CREATE TABLE vDB_sch.Appointment
 (
-	appointmentid INTEGER NOT NULL,
+	appointmentid INTEGER NOT NULL IDENTITY(401, 1), -- appointment id + auto-increment from 401
 	buid INTEGER NOT NULL, -- beneficiary id
 	sessionid INTEGER NOT NULL,
 
