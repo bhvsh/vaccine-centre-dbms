@@ -33,7 +33,6 @@ CREATE TABLE vDB_sch.Vaccine
 	vname TEXT NOT NULL,
 	vbrand TEXT NOT NULL,
 	vdetail TEXT,
-	interval_dt INTEGER NOT NULL,
 	PRIMARY KEY(vid)
 )
 
@@ -64,10 +63,10 @@ CREATE TABLE vDB_sch.Vrecord
 	buid INTEGER NOT NULL, -- beneficiary id
 	vid INTEGER NOT NULL, -- vaccine id
 	tookDose1 BIT DEFAULT 0,
-	dateDose1 DATE,
+	sidDose1 INTEGER,
 	nextDue DATE,
 	tookDose2 BIT DEFAULT 0,
-	dateDose2 DATE,
+	sidDose2 INTEGER,
 	CONSTRAINT FK_BeneficiaryVrecord FOREIGN KEY(buid) REFERENCES vDB_sch.Beneficiary(buid)
 )
 
