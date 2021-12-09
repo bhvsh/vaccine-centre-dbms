@@ -26,4 +26,18 @@ VALUES
 ('B09',2,209),
 ('B10',2,210);
 
+-- For floor 3
+INSERT INTO vDB_sch.Rooms(rid,floorid,roomid)
+VALUES
+('C01',3,301),
+('C02',3,302),
+('C03',3,303),
+('C04',3,304),
+('C05',3,305),
+('C06',3,306),
+('C07',3,307),
+('C08',3,308),
+('C09',3,309),
+('C10',3,310);
+
 SELECT * FROM vDB_sch.Rooms;
