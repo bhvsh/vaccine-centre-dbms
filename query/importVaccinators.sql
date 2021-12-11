@@ -1,6 +1,6 @@
 -- query that will import all the rows into the 'Vaccinators' table using .csv file
 
-BULK INSERT vDB_sch.Vaccinators
+BULK INSERT vDB_centreData.Vaccinators
 FROM 'Vaccinator.csv'
 WITH
 (

@@ -1,6 +1,6 @@
 -- query that will import all the rows into the 'Beneficiary' table using .csv file
 
-BULK INSERT vDB_sch.Beneficiary
+BULK INSERT vDB_userData.Beneficiary
 FROM 'Beneficiary.csv'
 WITH
 (
