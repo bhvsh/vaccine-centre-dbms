@@ -1,4 +1,5 @@
 -- creating a schema 'vDB_userData'
+
 CREATE SCHEMA vDB_userData
 GO
 
