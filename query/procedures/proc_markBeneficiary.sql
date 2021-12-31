@@ -1,4 +1,5 @@
 -- Functional Requirement: Immunization registration
+-- yet to rewrite the code
 
 CREATE FUNCTION vDB_sch.markBeneficiary(
     @aid INTEGER

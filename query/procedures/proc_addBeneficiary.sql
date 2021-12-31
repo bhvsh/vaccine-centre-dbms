@@ -1,7 +1,7 @@
--- function definition of vDB_userData.addBeneficiary()
+-- procedure definition of vDB_userData.addBeneficiary
 -- returns verification id (uniqueidentifier) for the newly created entry
 
-CREATE FUNCTION vDB_userData.addBeneficiary(
+CREATE PROCEDURE vDB_userData.addBeneficiary
     @bname TEXT, 
 	@bidtype INTEGER,
 	@biid TEXT,
@@ -9,18 +9,16 @@ CREATE FUNCTION vDB_userData.addBeneficiary(
     @bdob DATE,
     @baddress TEXT,
 	@bphone CHAR(10)
-)
-RETURNS UNIQUEIDENTIFIER
-BEGIN
+AS
     DECLARE @brid INTEGER
 
     INSERT INTO vDB_userData.Beneficiary(bname,bidtype,biid,bgender,bdob,baddress,bphone)
     VALUES (@bname,@bidtype,@biid,@bgender,@bdob,@baddress,@bphone)
 
-    SET @brid = (SELECT LAST(brid) FROM vDB_userData.Beneficiary)
+    SET @brid = (SELECT TOP 1 brid FROM vDB_userData.Beneficiary ORDER BY brid DESC)
 
     INSERT INTO vDB_authData.BeneficiaryAuthID(brid)
     VALUES (@brid)
 
-    RETURN (SELECT LAST(buid) FROM vDB_authData.BeneficiaryAuthID)
-END
+    SELECT TOP 1 buid FROM vDB_authData.BeneficiaryAuthID ORDER BY brid DESC
+GO
