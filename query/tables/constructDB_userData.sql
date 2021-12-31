@@ -11,6 +11,7 @@ CREATE TABLE vDB_userData.IdentityType
 )
 
 -- 'b' stands for Beneficiary
+-- SELECT * FROM vDB_userData.Beneficiary
 CREATE TABLE vDB_userData.Beneficiary
 (
 	brid INTEGER NOT NULL IDENTITY(1001, 1), -- beneficiary id + auto-increment from 1001

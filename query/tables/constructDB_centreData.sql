@@ -3,6 +3,7 @@ CREATE SCHEMA vDB_centreData
 GO
 
 -- 'w' stands for Vaccinator (Worker)
+-- SELECT * FROM vDB_centreData.Vaccinator
 CREATE TABLE vDB_centreData.Vaccinator
 (
 	wrid INTEGER NOT NULL IDENTITY(201, 1),
@@ -41,19 +42,28 @@ CREATE TABLE vDB_centreData.Appointment
 	brid INTEGER NOT NULL, -- beneficiary id
 	sessionid INTEGER NOT NULL,
 
-	PRIMARY KEY(appointmentid),
+	CONSTRAINT PK_Appointment PRIMARY KEY(appointmentid),
 	CONSTRAINT FK_BeneficiaryAppointment FOREIGN KEY(brid) REFERENCES vDB_userData.Beneficiary(brid) ON DELETE CASCADE,
 	CONSTRAINT FK_ScheduleAppointment FOREIGN KEY(sessionid) REFERENCES vDB_centreData.Schedule(sessionid) ON DELETE CASCADE
 );
 
+CREATE TABLE vDB_centreData.Vstatus
+(
+	vstatus INTEGER NOT NULL,
+	vsdescription TEXT NOT NULL,
+	CONSTRAINT PK_Vstatus PRIMARY KEY(vstatus)
+)
+
 CREATE TABLE vDB_centreData.Vrecord
 (
 	brid INTEGER NOT NULL, -- beneficiary id
-	vid INTEGER NOT NULL, -- vaccine id
+	vid INTEGER NOT NULL DEFAULT 0, -- vaccine id
 	vstatus INTEGER DEFAULT 0, -- 0, not vaccinated; 1, partially vaccinated (Dose1); 2, fully vaccinated (Dose2)
 	dateDose1 DATE,
+	wridDose1 INTEGER,
 	dateDose2 DATE,
-	nextDue DATE,
+	wridDose2 INTEGER,
 	CONSTRAINT FK_BeneficiaryVrecord FOREIGN KEY(brid) REFERENCES vDB_userData.Beneficiary(brid) ON DELETE CASCADE,
-	CONSTRAINT FK_VrecordDose FOREIGN KEY(vid) REFERENCES vDB_centreData.Vaccine(vid)
+	CONSTRAINT FK_VrecordDose FOREIGN KEY(vid) REFERENCES vDB_centreData.Vaccine(vid),
+	CONSTRAINT FK_VstatusDesc FOREIGN KEY(vstatus) REFERENCES vDB_centreData.Vstatus(vstatus)
 );
