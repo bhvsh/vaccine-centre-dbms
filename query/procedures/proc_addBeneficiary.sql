@@ -20,5 +20,10 @@ AS
     INSERT INTO vDB_authData.BeneficiaryAuthID(brid)
     VALUES (@brid)
 
-    SELECT TOP 1 buid FROM vDB_authData.BeneficiaryAuthID ORDER BY brid DESC
+    INSERT INTO vDB_centreData.Vrecord(brid)
+    VALUES (@brid)
+
+    SELECT TOP 1 brid,buid FROM vDB_authData.BeneficiaryAuthID ORDER BY brid DESC
 GO
+
+-- DROP PROCEDURE vDB_userData.addBeneficiary

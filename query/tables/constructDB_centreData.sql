@@ -24,6 +24,7 @@ CREATE TABLE vDB_centreData.Vaccine
 	CONSTRAINT PK_Vaccine PRIMARY KEY(vid)
 )
 
+-- SELECT * FROM vDB_centreData.Schedule
 CREATE TABLE vDB_centreData.Schedule
 (
 	sessionid INTEGER NOT NULL IDENTITY(301, 1), -- session id + auto-increment from 301
@@ -36,6 +37,7 @@ CREATE TABLE vDB_centreData.Schedule
 	CONSTRAINT FK_VaccineSchedule FOREIGN KEY(vid) REFERENCES vDB_centreData.Vaccine(vid) ON DELETE CASCADE
 )
 
+-- SELECT * FROM vDB_centreData.Appointment
 CREATE TABLE vDB_centreData.Appointment
 (
 	appointmentid INTEGER NOT NULL IDENTITY(401, 1), -- appointment id + auto-increment from 401
@@ -43,8 +45,8 @@ CREATE TABLE vDB_centreData.Appointment
 	sessionid INTEGER NOT NULL,
 
 	CONSTRAINT PK_Appointment PRIMARY KEY(appointmentid),
-	CONSTRAINT FK_BeneficiaryAppointment FOREIGN KEY(brid) REFERENCES vDB_userData.Beneficiary(brid) ON DELETE CASCADE,
-	CONSTRAINT FK_ScheduleAppointment FOREIGN KEY(sessionid) REFERENCES vDB_centreData.Schedule(sessionid) ON DELETE CASCADE
+	CONSTRAINT FK_BeneficiaryAppointment FOREIGN KEY(brid) REFERENCES vDB_userData.Beneficiary(brid),
+	CONSTRAINT FK_ScheduleAppointment FOREIGN KEY(sessionid) REFERENCES vDB_centreData.Schedule(sessionid)
 );
 
 CREATE TABLE vDB_centreData.Vstatus
@@ -54,6 +56,7 @@ CREATE TABLE vDB_centreData.Vstatus
 	CONSTRAINT PK_Vstatus PRIMARY KEY(vstatus)
 )
 
+-- SELECT * FROM vDB_centreData.Vrecord
 CREATE TABLE vDB_centreData.Vrecord
 (
 	brid INTEGER NOT NULL, -- beneficiary id
