@@ -1,4 +1,4 @@
-# vaccine-centre-db
+# vaccine-centre-dbms
 COVID-19 Vaccination Centre Database Management System
 
 This Project aims to illustrate the basic concepts of SQL and can be utilized in either
@@ -13,3 +13,5 @@ retrieve their own vaccination status which can act as an assurance as a benefic
 of the vaccination. It could act as a proof of vaccination which could be used as a
 requirement to enter workplace facilities, colleges, public areas or to travel
 internationally.
+
+Demo website: https://covidvacc-proj.azurewebsites.net/index.php
