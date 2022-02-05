@@ -1,5 +1,4 @@
 -- Functional Requirement: Immunization registration
--- yet to rewrite the code
 
 CREATE PROCEDURE vDB_centreData.markBeneficiary
     @aid INTEGER

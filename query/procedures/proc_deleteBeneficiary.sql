@@ -1,6 +1,5 @@
 -- Functional Requirement: Deleting the subject's record on request
 -- procedure definition of vDB_sch.deleteMedInfo() - made for the 'Admin' user-group 
--- yet to rewrite the code
 
 CREATE PROCEDURE vDB_centreData.deleteBeneficiary
     @brid INTEGER
