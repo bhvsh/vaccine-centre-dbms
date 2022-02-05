@@ -18,3 +18,4 @@ VALUES
 INSERT INTO vDB_centreData.Vstatus
 VALUES
 (0,'Not Vaccinated'), (1,'Partially Vaccinated'), (2,'Fully Vaccinated');
+

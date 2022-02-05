@@ -19,3 +19,6 @@ AS
 
     SELECT TOP 1 wuid FROM vDB_authData.VaccinatorAuthID ORDER BY wrid DESC
 GO
+
+
+EXEC vDB_centreData.addVaccinator 'Karthik Naik','Male','1993-07-23',9749275434
