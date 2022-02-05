@@ -1,6 +1,5 @@
 -- procedure definition of vDB_sch.addSession()
 -- returns sessionID for the newly created session
--- yet to rewrite the code
 
 CREATE PROCEDURE vDB_centreData.addSession
     @start_dt_time DATETIME, 

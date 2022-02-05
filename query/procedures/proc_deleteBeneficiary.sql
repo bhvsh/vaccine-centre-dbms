@@ -9,6 +9,10 @@ AS
     DELETE FROM vDB_authData.BeneficiaryAuthID
     WHERE brid=@brid
 
+    -- Remove userData from the system
+    DELETE FROM vDB_userData.Beneficiary
+    WHERE brid=@brid
+
     -- Remove any appointments made by the user from the system
     DELETE FROM vDB_centreData.Appointment
     WHERE brid=@brid

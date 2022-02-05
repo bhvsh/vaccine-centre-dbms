@@ -9,6 +9,7 @@ AS
     DECLARE @sid INTEGER
     DECLARE @vid INTEGER
     DECLARE @wrid INTEGER
+    DECLARE @wname VARCHAR(100)
     DECLARE @vstat INTEGER
 
     SET @brid = (SELECT brid FROM vDB_centreData.Appointment WHERE appointmentid=@aid)
@@ -16,24 +17,25 @@ AS
     SET @date = (SELECT cast(start_dt_time as date) [date] FROM vDB_centreData.Schedule WHERE sessionid=@sid)
     SET @vid = (SELECT vid FROM vDB_centreData.Schedule WHERE sessionid=@sid)
     SET @wrid = (SELECT wrid FROM vDB_centreData.Schedule WHERE sessionid=@sid)
+    SET @wname = (SELECT wname FROM vDB_centreData.Vaccinator WHERE wrid=@wrid)
     SET @vstat = (SELECT vstatus FROM vDB_centreData.Vrecord WHERE brid=@brid)
     
     -- Update Vstatus row of brid
     UPDATE vDB_centreData.Vrecord
-    SET vid=@vid, dateDose1=@date, wridDose1=@wrid
+    SET vid=@vid
     WHERE brid=@brid;
 
     IF(@vstat = 0)
     BEGIN
         UPDATE vDB_centreData.Vrecord
-        SET vstatus=1
+        SET vstatus=1,wridDose1=@wrid,wnameDose1=@wname
         WHERE brid=@brid;
     END
 
     ELSE
     BEGIN
         UPDATE vDB_centreData.Vrecord
-        SET vstatus=2
+        SET vstatus=2,wridDose2=@wrid,wnameDose2=@wname
         WHERE brid=@brid;
     END
 
@@ -42,27 +44,3 @@ AS
     WHERE appointmentid=@aid
 
 GO
-
--- DROP PROCEDURE vDB_centreData.markBeneficiary
-  /*DECLARE @tookDose1 BIT
-    DECLARE @buid INTEGER
-    DECLARE @sid INTEGER
-
-    SET @sid = (SELECT sessionid FROM vDB_centreData.Appointment WHERE buid=@buid)
-    SET @buid = (SELECT buid FROM vDB_centreData.Appointment WHERE buid=@buid)
-    SET @tookDose1 = (SELECT tookDose1 FROM vDB_centreData.Vrecord WHERE buid=@buid)
-
-    IF (ISNULL(@tookDose1,1) = 1)
-    BEGIN
-        UPDATE vDB_centreData.Vrecord
-        SET tookDose1 = 1, sidDose1=@sid
-        WHERE buid=@buid
-    END
-    
-    ELSE
-    BEGIN
-        UPDATE vDB_centreData.Vrecord
-        SET tookDose2 = 1, sidDose2=@sid
-        WHERE buid=@buid
-    END
-*/

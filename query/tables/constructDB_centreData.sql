@@ -64,9 +64,12 @@ CREATE TABLE vDB_centreData.Vrecord
 	vstatus INTEGER DEFAULT 0, -- 0, not vaccinated; 1, partially vaccinated (Dose1); 2, fully vaccinated (Dose2)
 	dateDose1 DATE,
 	wridDose1 INTEGER,
+	wnameDose1 TEXT,
 	dateDose2 DATE,
 	wridDose2 INTEGER,
+	wnameDose2 TEXT
 	CONSTRAINT FK_BeneficiaryVrecord FOREIGN KEY(brid) REFERENCES vDB_userData.Beneficiary(brid) ON DELETE CASCADE,
 	CONSTRAINT FK_VrecordDose FOREIGN KEY(vid) REFERENCES vDB_centreData.Vaccine(vid),
 	CONSTRAINT FK_VstatusDesc FOREIGN KEY(vstatus) REFERENCES vDB_centreData.Vstatus(vstatus)
 );
+
