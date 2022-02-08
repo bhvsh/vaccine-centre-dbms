@@ -13,5 +13,3 @@ retrieve their own vaccination status which can act as an assurance as a benefic
 of the vaccination. It could act as a proof of vaccination which could be used as a
 requirement to enter workplace facilities, colleges, public areas or to travel
 internationally.
-
-Demo website: https://covidvacc-proj.azurewebsites.net/index.php
