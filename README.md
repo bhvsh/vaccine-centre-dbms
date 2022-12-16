@@ -1,4 +1,6 @@
-# COVID-19 Vaccination Centre Database Management System
+# COVID-19 Vaccination Centre Database Management System <a title="PHP Version Used"><img alt="PHP Version Used: 8.0.13" src="https://img.shields.io/badge/php-8.0.13-777bb3.svg?logo=php&logoColor=white&labelColor=555555"></a>
+
+![Homepage](bhvsh/vaccine-centre-dbms/images/homepage.png)
 
 This Project aims to illustrate the basic concepts of SQL and can be utilized in either
 day-to-day or in exigency situations. The following project is a Database
