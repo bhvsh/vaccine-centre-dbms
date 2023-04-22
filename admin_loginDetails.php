@@ -4,7 +4,8 @@ session_start();
 <html>
     <body>
     <?php
-        if($_POST['adminpass']=='vaccine'){
+        # Bad practice to hardcode the password, preferably store it in a database
+        if($_POST['adminpass']=='ADMINPASSWORDHERE'){
             $_SESSION["adminpass"]=$_POST['adminpass'];
             echo "<script> window.location.href = 'admin_main.php';alert('Logged in to the system!')</script>";
         }

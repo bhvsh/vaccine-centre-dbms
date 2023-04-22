@@ -4,8 +4,8 @@ session_start();
 <html>
     <body>
     <?php
-        $connectionInfo = array("UID" => "cs502main", "pwd" => "CSDB502_@Azure!", "Database" => "CovidVaccinationDB", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
-        $serverName = "tcp:cs502-project-4048.database.windows.net,1433";
+        $connectionInfo = array("UID" => "UIDHERE", "pwd" => "PASSWORDHERE", "Database" => "CovidVaccinationDB", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
+        $serverName = "tcp:cs502-project-4048.database.windows.net,1433"; # Server discarded for security reasons
         $conn = sqlsrv_connect($serverName, $connectionInfo);
 
         if( $conn ) {

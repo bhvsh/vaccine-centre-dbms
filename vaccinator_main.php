@@ -1,7 +1,7 @@
 <?php
 session_start();
-$connectionInfo = array("UID" => "cs502main", "pwd" => "CSDB502_@Azure!", "Database" => "CovidVaccinationDB", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
-$serverName = "tcp:cs502-project-4048.database.windows.net,1433";
+$connectionInfo = array("UID" => "UIDHERE", "pwd" => "PASSWORDHERE", "Database" => "CovidVaccinationDB", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
+$serverName = "tcp:cs502-project-4048.database.windows.net,1433"; # Server discarded for security reasons
 $conn = sqlsrv_connect($serverName, $connectionInfo);
 
 $wrid=$_SESSION["wrid"];
@@ -19,10 +19,10 @@ if(isset($_SESSION["wrid"])){
     <meta name="description" content="">
     <meta name="page_type" content="np-template-header-footer-from-plugin">
     <title>Vaccinator Console - Vaccine Registration System</title>
-    <link rel="stylesheet" href="nicepage.css" media="screen">
-<link rel="stylesheet" href="vaccinator_main.css" media="screen">
-    <script class="u-script" type="text/javascript" src="jquery-1.9.1.min.js" defer=""></script>
-    <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
+    <link rel="stylesheet" href="/css/nicepage.css" media="screen">
+<link rel="stylesheet" href="/css/vaccinator_main.css" media="screen">
+    <script class="u-script" type="text/javascript" src="/js/jquery-1.9.1.min.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/js/nicepage.js" defer=""></script>
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
 
 
